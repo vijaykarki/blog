@@ -1,0 +1,26 @@
+.post-description{
+    margin: 50px;
+}
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+}
+.post-image{
+    /* background-color: black; */
+    height: 300px;
+    width: 400px;
+    margin: 10px;
+}
+.post-image img{
+    /* background-color: black; */
+    height: 100%;
+    width: 100%;
+    margin: 10px;
+    object-fit: fill;
+}
+.details > p{
+    text-align: justify;
+    font-size: 22px;
+    padding: 10px;
+}
