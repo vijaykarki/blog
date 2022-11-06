@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
-            // $table->foreign('user_id')->references('id')->on('users');
-
-            $table->integer('post_id')->unsigned();
-            // $table->foreign('post_id')->references('id')->on('Post');
-
+            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->unsignedBigInteger('post_id')->unsigned();
             $table->text('comment_text');
             $table->datetime('comment_date');
             $table->timestamps();
+        });
+        Schema::table('comments', function($table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('post_id')->references('id')->on('posts');
         });
     }
 

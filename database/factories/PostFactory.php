@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Factories;
-use App\models\Post;
-use App\models\User;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
