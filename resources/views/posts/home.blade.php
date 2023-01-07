@@ -1,7 +1,7 @@
 <div class="container">
     <h1>All Posts</h1>
-    <a href="/posts/create" class="btn btn-primary mb-4">Create Post</a>
-    <a href="/logout" > Logout
+    <a href="/logout" > Logout </a>
+    <a href="/create" > Create Post </a>
     <table class="table">
         <thead>
             <tr>

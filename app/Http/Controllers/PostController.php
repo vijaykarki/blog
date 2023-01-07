@@ -11,12 +11,11 @@ class PostController extends Controller
 {
 
     
-            public function __construct(){
+     public function __construct(){
         
-                $this->middleware('auth')->except(['index','show']);
+         $this->middleware('auth')->except(['index','show']);
                
-            }
-            
+     }     
     public function index()
     {
         $posts = Post::with('comments')->get();
@@ -29,23 +28,25 @@ class PostController extends Controller
         return view('posts.create');
     }
 
+    
     public function store(Request $request)
     {
         $request->validate([
             'title' => 'required',
             'body' => 'required',
         ]);
-
+    
         $post = new Post([
             'title' => $request->title,
             'body' => $request->body,
             'user_id' => Auth::id(),
         ]);
-
+    
         $post->save();
-
-        return redirect('/posts')->with('success', 'Post created successfully');
+    
+        return redirect('/posts');
     }
+    
 
     public function show(Post $post)
     {
@@ -53,99 +54,35 @@ class PostController extends Controller
         
         return view('posts.show', compact('post'));
     }
+
+    public function edit(Post $post)
+{
+    return view('posts.edit', compact('post'));
 }
 
+public function update(Request $request, Post $post)
+{
+    $this->authorize('update', $post);
 
+    $request->validate([
+        'title' => 'required',
+        'body' => 'required',
+    ]);
 
-// namespace App\Http\Controllers;
+    $post->title = $request->title;
+    $post->body = $request->body;
+    $post->save();
 
-// use Illuminate\Http\Request;
-// use App\Models\Post;
-// use Auth;
+    return redirect('/posts');
+}
 
-// class PostController extends Controller
-// {
-//     public function __construct(){
+public function destroy(Post $post)
+{
+    $this->authorize('delete', $post);
 
-//         $this->middleware('auth')->except(['index','show']);
-       
-//     }
-    
-//     // public function index()
-//     // {
-//     //     return view('posts.index');
-//     // }
+    $post->delete();
 
-//     public function index()
-//     {
-//         $posts = Post::all();
-//         return view('posts.index', ['posts'=>$posts]);
-//     }
+    return redirect('/posts');
+}
 
-//     public function create()
-//     {
-//         return view('posts.create');
-//     }
-
-//     public function store(Request $request)
-//     {
-//         $request->validate([
-//             'title' => 'required',
-//             'body' => 'required',
-//         ]);
-
-//         $post = new Post([
-//             'title' => $request->title,
-//             'body' => $request->body,
-//             'user_id' => Auth::id(),
-//         ]);
-
-//         $post->save();
-
-//         return redirect()->route('post.index', $post->id);
-//     }
-
-//     public function show($id)
-//     {
-//         $post = Post::find($id);
-//         return view('posts.show', ['post'=>$post]);
-
-//     }
-
-//     public function edit($id)
-//     {
-//         $post = Post::find($id);
-//         return view('posts.edit' , ['post'=>$post]);
-
-
-//     }
-
-//     public function update(Request $request, $id)
-//     {
-//         $post = Post::find($id);
-//         if(Auth::id() == $post->user->id){
-//             $validated_data = $request->validate([
-//                 'title'=>'required',
-//                 'body'=>'required',
-//             ]);
-    
-//             $post->title= $validated_data['title'];
-//             $post->body= $validated_data['body'];
-//             $post->user_id = Auth::id(); 
-//             $post->save();
-//         }
-//         else{
-//             return "Not Authorized";
-//         }
-//         return redirect()->route('post.show', $post->id);
-//     }
-
-//     public function destroy($id)
-//     {
-//         $post = Post::find($id);
-//         $post->delete();
-//         return redirect()->route('post.index', $post->id);
-//     }
-// }
-
-
+}                       

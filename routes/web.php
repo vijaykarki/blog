@@ -15,42 +15,6 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('posts.index');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('index');
-// })->middleware(['auth', 'verified'])->name('home');
-
-// Route::get('/posts', 'PostController@index');
-// Route::get('/posts/create', 'PostController@create');
-// Route::post('/posts', 'PostController@store');
-// Route::get('/posts/{post}', 'PostController@show');
-// Route::post('/posts/{post}/comments', 'CommentController@store');
-
-// Route::get('/', 'PostController@index');
-
-// Route::get('/home', 'PostController@index');
-// Route::resource('/post', 'PostController',);
-// Route::get('/posts/create', 'PostController@create');
-// Route::post('/comment', 'CommentController@store',);
-// // Auth::routes();
-
-
-
-// Route::get('/', 'PostController@index')->name('index');
-// Route::get('/dashboard', 'HomeController@index')->name('home');
-// Route::get('/posts/create', 'PostController@create');
-// Route::post('/posts', 'PostController@store');
-// Route::get('/posts/{post}', 'PostController@show');
-
-
-
-// // Route::get('/home', 'HomeController@index')->name('home');
-// // Route::resource('post', 'PostController',);
-// Route::post('comment', 'CommentController@store',);
-// // Auth::routes();
 
 Route::get('/', 'HomeController@index');
 Route::get('/posts/{post}', 'PostController@show');
@@ -59,11 +23,17 @@ Route::get('/posts/{post}', 'PostController@show');
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', 'PostController@index');
     Route::get('/posts', 'PostController@index');
-
-    Route::get('/posts/create', 'PostController@create');
+    Route::get('/create', 'PostController@create');
     Route::post('/posts', 'PostController@store');
+
+    Route::get('/posts/{post}/edit', 'PostController@edit');
+    Route::put('/posts/{post}', 'PostController@update');
+
+    Route::delete('/posts/{post}', 'PostController@destroy');
     Route::post('/posts/{post}/comments', 'CommentController@store');
-    Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+
+    
+    Route::get('/logout', 'LogoutController@index');
  });
 
 
