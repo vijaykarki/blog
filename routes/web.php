@@ -16,7 +16,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 */
 
 
-Route::get('/', 'HomeController@index')->name('dashboard');
+Route::get('/', 'PostController@index')->name('dashboard');
 Route::get('/posts/{post}', 'PostController@show') ->name('posts.show');
 
 
@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/posts/{post}/comments', 'CommentController@store')->name('comments.store');
 
     
-    // Route::get('/logout', 'LogoutController@index');
+    Route::get('/logout', 'LogoutController@index') ->name('logout');
 
     Route::get('/profiles/create', 'ProfileController@create')->name('profiles.create');
     Route::post('/profiles', 'ProfileController@store')->name('profiles.store');

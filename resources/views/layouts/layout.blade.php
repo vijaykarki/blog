@@ -5,11 +5,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
-<body>
+<body style="margin: 0">
     @include('partials.navigation')
-
+    
     @yield('content')
-
-    @include('partials.footer')
 </body>
 </html>
