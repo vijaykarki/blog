@@ -23,10 +23,8 @@ class CommentFactory extends Factory
     {
         return [
             //
-            'user_id' => User::factory(),
             'post_id' => Post::factory(),
-            'comment_text' => fake()->text(),
-            'comment_date'=>now(),
+            'body' => fake()->text(),
         ];
     }
 }

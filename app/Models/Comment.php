@@ -2,24 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use HasFactory;
-    protected $table = 'comments';
-
-    public $primaryKey = 'id';
-
-    protected $fillable =[
-        'user_id', 'post_id', 'comment_text', 'comment_date'
+    protected $fillable = [
+        'post_id', 'user_id', 'body',
     ];
 
-    public function commentor(){
-        return $this->belongsTo(User::class, 'user_id');
-    }
-    public function post(){
+    public function post()
+    {
         return $this->belongsTo(Post::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

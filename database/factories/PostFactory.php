@@ -22,9 +22,8 @@ class PostFactory extends Factory
         return [
             //
             'user_id' => User::factory(),
-            'title' => fake()->sentence(),
-            'post_content' => fake()->paragraph(),
-            'post_date'=>now(),
+            'title' => $this->faker->sentence(),
+            'body' => $this->faker->paragraph(),
         ];
     }
 }
