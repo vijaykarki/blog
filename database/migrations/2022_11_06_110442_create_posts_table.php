@@ -15,6 +15,7 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('view_count')->default(0);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

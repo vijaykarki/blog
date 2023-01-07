@@ -1,3 +1,8 @@
+@extends('layouts.layout')
+
+@section('title', 'Home')
+
+@section('content')
 <div class="container">
     <h1>All Posts</h1>
     <a href="/logout" > Logout </a>
@@ -23,3 +28,4 @@
         </tbody>
     </table>
 </div>
+@endsection

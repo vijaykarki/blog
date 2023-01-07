@@ -1,6 +1,11 @@
+
+    @section('title', 'Index')
+
+
     <a href="/login"> Login</a>
     <a href="/register"> Register</a>
 
+    @section('content')
     <div class="container">
     <h1>All Posts</h1>
     <table class="table">
@@ -24,4 +29,4 @@
         </tbody>
     </table>
 </div>
-
+@endsection

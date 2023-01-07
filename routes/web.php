@@ -16,24 +16,33 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 */
 
 
-Route::get('/', 'HomeController@index');
-Route::get('/posts/{post}', 'PostController@show');
+Route::get('/', 'HomeController@index')->name('dashboard');
+Route::get('/posts/{post}', 'PostController@show') ->name('posts.show');
 
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/dashboard', 'PostController@index');
-    Route::get('/posts', 'PostController@index');
-    Route::get('/create', 'PostController@create');
-    Route::post('/posts', 'PostController@store');
+    Route::get('/dashboard', 'PostController@index')->name('/');
+    Route::get('/posts', 'PostController@index')->name('/');
+    Route::get('/create', 'PostController@create')->name('posts.create');
+    Route::post('/posts', 'PostController@store')->name('posts.store');
 
-    Route::get('/posts/{post}/edit', 'PostController@edit');
-    Route::put('/posts/{post}', 'PostController@update');
+    Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+    Route::put('/posts/{post}', 'PostController@update') ->name('posts.update');
 
-    Route::delete('/posts/{post}', 'PostController@destroy');
-    Route::post('/posts/{post}/comments', 'CommentController@store');
+    Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy');
+    Route::post('/posts/{post}/comments', 'CommentController@store')->name('comments.store');
 
     
-    Route::get('/logout', 'LogoutController@index');
+    // Route::get('/logout', 'LogoutController@index');
+
+    Route::get('/profiles/create', 'ProfileController@create')->name('profiles.create');
+    Route::post('/profiles', 'ProfileController@store')->name('profiles.store');
+    Route::get('/profiles/{profile}', 'ProfileController@show')->name('profiles.show');
+    Route::get('/profiles/{profile}/edit', 'ProfileController@edit')->name('profiles.edit');
+    Route::patch('/profiles/{profile}', 'ProfileController@update')->name('profiles.update');
+
+
+
  });
 
 

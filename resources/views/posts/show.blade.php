@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@extends('layouts.app')
 
-    <title>Document</title>
-</head>
-<body>
+@section('title', 'Edit Post')
+
+@section('content')
 
 <div class="container">
     <h1>{{ $post->title }}</h1>
     <p>{{ $post->body }}</p>
-
-    
-
+    <img src="{{ asset('/storage/app/'.$post->image) }}" alt="This is post Image">
+    <!-- <img src="~/blog/storage/app/public/GToWZMb9g4dHoyc3luKNVLDvXj9AWiJe2m3Z7HGM.jpg" alt="Featured Image"> -->
 
     @if (Auth::id() == $post->user_id)
     <a href="/posts/{{ $post->id }}/edit" class="btn btn-primary">Edit</a>
@@ -69,8 +62,4 @@ $(document).ready(function() {
     });
 });
 </script> -->
-
-
-    
-</body>
-</html>
+@endsection

@@ -4,11 +4,13 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                <!-- <div class="shrink-0 flex items-center">
+                    <a href="{{ route('/') }}">
+                     <x-application-logo class="block h-10 w-auto fill-current text-gray-600" /> 
+
+                    <p class="block h-10 w-auto fill-current text-gray-600" >Blog Logo</p>
                     </a>
-                </div>
+                </div> -->
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -16,6 +18,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -31,6 +34,7 @@
                                 </svg>
                             </div>
                         </button>
+                        
                     </x-slot>
 
                     <x-slot name="content">

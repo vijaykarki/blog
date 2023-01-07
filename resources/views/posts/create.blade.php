@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Post</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Create Post')
+
+@section('content')
 
 <div class="container">
     <h1>Create Post</h1>
-    <form method="POST" action="/posts">
+    <form method="POST" enctype="multipart/form-data" action="/posts">
         @csrf
         <div class="form-group">
             <label for="title">Title</label>
@@ -20,9 +16,11 @@
             <label for="body">Body</label>
             <textarea class="form-control" id="body" name="body" rows="3" required></textarea>
         </div>
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" class="form-control" id="image" name="image" required>
+        </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
-    
-</body>
-</html>
+@endsection
