@@ -128,7 +128,7 @@ textarea {
     <span class="author-tag">By: <a href="/profiles/{{ $post->user->id }}">{{ $post->user->name }}</a></span>    
     <p class="view-count">Views: {{ $post->view_count }}</p>
   </div>
-  @if (Auth::check() || (Auth::user()->hasRole('admin') || Auth::user()->can('edit-posts') || Auth::user()->can('delete-posts')))    
+  @if (Auth::check() && (Auth::id() == $post->user->id|| Auth::user()->hasRole('admin') || Auth::user()->can('edit-posts') || Auth::user()->can('delete-posts')))    
   <div class="post-actions">
         <button class="edit-button">  <a href="/posts/{{ $post->id }}/edit" class="edit-button-a">Edit</a></button>
         <form action="/posts/{{ $post->id }}" method="POST">
