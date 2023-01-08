@@ -80,11 +80,12 @@ public function update(Request $request, Post $post)
         'body' => 'required',
         'image' => 'required',
     ]);
-
-    if ($image = $request->file('image')){
-        $imageName = uniqid().$image->getClientOriginalName();
-        $image->move('images', $imageName);
-    }
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = uniqid() . $image->getClientOriginalName();
+            $image->move('images', $imageName);
+            $post->image = $imageName;
+        }
     $post->title = $request->title;
     $post->body = $request->body;
     $post->save();

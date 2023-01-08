@@ -26,7 +26,6 @@ class CommentController extends Controller
     
         $comment->save();
 
-        // $post = Post::find($request->post_id);
         $user = User::find($post->user_id);
         $user->notify(new CommentNotification);
         if ($request->ajax()) {

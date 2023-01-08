@@ -67,7 +67,7 @@ textarea {
 
 <div class="container">
     <h1>Edit Post</h1>
-    <form method="POST" action="/posts/{{ $post->id }}">
+    <form method="POST" enctype="multipart/form-data" action="/posts/{{ $post->id }}">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -80,7 +80,7 @@ textarea {
         </div>
         <div class="form-group">
             <label for="image">Image</label>
-            <input type="file" class="form-control" id="image" name="image"value="{{ $post->image }}" required />
+            <input type="file" class="form-control" id="image" name="image" required />
         </div>
 
         <div class="form-group">
