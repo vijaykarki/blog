@@ -20,7 +20,7 @@ class PostController extends Controller
      }     
     public function index()
     {
-        $posts = Post::with('comments')->get();
+        $posts = Post::with('comments')->latest()->paginate(4);
 
         return view('posts.home', compact('posts'));
     }
@@ -39,11 +39,14 @@ class PostController extends Controller
             'body' => 'required',
             'image' => 'required',
         ]);
-        $path = $request->file('image')->store('public/images');
+        if ($image = $request->file('image')){
+            $imageName = uniqid().$image->getClientOriginalName();
+            $image->move('images', $imageName);
+        }
         $post = new Post([
             'title' => $request->title,
             'body' => $request->body,
-            'image' => $path,
+            'image' => $imageName,
             'user_id' => Auth::id(),
         ]);
     
@@ -78,9 +81,9 @@ public function update(Request $request, Post $post)
         'image' => 'required',
     ]);
 
-    if ($request->hasFile('image')) {
-        $path = $request->file('image')->store('public/images');
-        $post->image = $path;
+    if ($image = $request->file('image')){
+        $imageName = uniqid().$image->getClientOriginalName();
+        $image->move('images', $imageName);
     }
     $post->title = $request->title;
     $post->body = $request->body;

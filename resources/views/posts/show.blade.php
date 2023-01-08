@@ -139,7 +139,7 @@ textarea {
     @endif
   </div>
   <div class="post-body">
-    <img src="{{ asset('/storage/app/'.$post->image) }}" alt="This is post Image" class="post-image">
+    <img src="/images/{{ $post->image }}" alt="This is post Image" class="post-image">
     <p class="post-content">{{ $post->body }}</p>
   </div>
   <hr>

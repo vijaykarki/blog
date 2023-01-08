@@ -54,7 +54,7 @@ a:hover {
   color: #666;
 }
 
-.btn {
+.view-button {
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -69,19 +69,19 @@ a:hover {
   transition: all 0.2s ease-in-out;
 }
 
-.btn-primary {
+.view-button {
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
 }
 
-.btn-primary:hover {
+.view-button:hover {
   color: #fff;
   background-color: #0069d9;
   border-color: #0062cc;
 }
 
-.mb-3 {
+.card {
   margin-bottom: 30px;
 }
  
@@ -100,5 +100,6 @@ a:hover {
       </div>
     </div>
   @endforeach
+  {{$posts->links()}}
 </div>
 @endsection
