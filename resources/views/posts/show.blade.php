@@ -31,6 +31,22 @@
   display: flex;
   align-items: center;
 }
+
+.author-tag {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-left: 10px;
+}
+.author-tag, .view-count {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
 .add-comment, .edit-button, .delete-button {
   display: block;
   background-color: #007bff;
@@ -101,7 +117,6 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 4px;
   height: 20px;
-
 }
 
 </style>
@@ -109,8 +124,11 @@ textarea {
 <div class="container">
   <div class="post-header">
     <h1 class="post-title">{{ $post->title }}</h1>
-    @if (Auth::id() == $post->user_id)
-    <div class="post-actions">
+    <div>
+    <span class="author-tag">By: <a href="/profiles/{{ $post->user->id }}">{{ $post->user->name }}</a></span>    
+    <p class="view-count">Views: {{ $post->view_count }}</p>
+  </div>
+  @if (Auth::check() && (Auth::user()->hasRole('admin') || Auth::user()->can('edit-posts')))    <div class="post-actions">
         <button class="edit-button">  <a href="/posts/{{ $post->id }}/edit" class="edit-button-a">Edit</a></button>
         <form action="/posts/{{ $post->id }}" method="POST">
           @csrf
@@ -129,8 +147,8 @@ textarea {
   <h3 class="comments-title">Comments</h3>
   <div class="comments">
       @if ($post->comments->count())
-          @foreach ($post->comments as $comment)
-              @include('posts.comment')
+      @foreach ($post->comments->sortByDesc('created_at') as $comment)              
+      @include('posts.comment')
           @endforeach
       @else
           <p>This post has no comments.</p>

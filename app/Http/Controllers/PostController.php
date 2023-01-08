@@ -55,7 +55,10 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        $post->increment('view_count');
+        if (!session()->has('post_viewed_' . $post->id)) {
+            $post->increment('view_count');
+            session(['post_viewed_' . $post->id => true]);
+        }
         
         return view('posts.show', compact('post'));
     }
@@ -83,7 +86,7 @@ public function update(Request $request, Post $post)
     $post->body = $request->body;
     $post->save();
 
-    return redirect('/posts');
+    return redirect("/posts/{$post->id}");
 }
 
 public function destroy(Post $post)

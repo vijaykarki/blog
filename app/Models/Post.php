@@ -22,4 +22,8 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function hasRole($role)
+{
+    return $this->role === $role;
+}
 }
