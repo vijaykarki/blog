@@ -85,7 +85,7 @@
 }
 
 .post-image {
-  max-width: 40%;
+  max-width: 50%;
   height: auto;
   margin-right: 20px;
 }
@@ -141,7 +141,7 @@ textarea {
   </div>
   <div class="post-body">
   <div class="post-image">
-    <img src="/images/{{ $post->image }}" alt="This is post Image" class="post-image">
+    <img src="/images/{{ $post->image }}" alt="This is post image" class="post-image">
 </div>
     <p class="post-content">{{ $post->body }}</p>
   </div>

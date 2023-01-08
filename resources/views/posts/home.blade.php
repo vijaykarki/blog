@@ -116,7 +116,11 @@ color: #fff;
 .pagination .page-item:hover {
 background-color: #f2f2f2;
 }
-
+.post-image {
+  max-width: 30%;
+  height: auto;
+  margin-right: 20px;
+}
 </style>
 
 <div class="container">
@@ -126,8 +130,10 @@ background-color: #f2f2f2;
     <div class="card-body">
     <h5 class="card-title">{{ $post->title }}</h5>
     <div class="card-text">
-    <img src="{{ asset('/storage/app/'.$post->image) }}" alt="This is post Image" class="card-image">
-    <p class="post-snippet">{{ substr($post->body, 0, 50) }}...</p>
+    <div class="post-image">
+      <img src="/images/{{ $post->image }}" alt="This is post image" class="post-image">
+    </div>    
+<p class="post-snippet">{{ substr($post->body, 0, 50) }}...</p>
     </div>
     <a href="/posts/{{ $post->id }}" class="view-button">View</a>
     </div>
