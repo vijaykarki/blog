@@ -26,7 +26,7 @@ class ProfileController extends Controller
         return redirect()->route('profiles.show', auth()->user());
     }
 
-    public function show(Profile $profile)
+    public function show(Profile $profile, Post $post)
     {
         $posts = $profile->user->posts;
 

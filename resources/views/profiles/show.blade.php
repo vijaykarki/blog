@@ -47,7 +47,12 @@
   font-weight: 600;
   color: #333;
 }
-
+.post-h3 {
+  margin: 20px 0 10px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #333;
+}
 .card-body ul {
   margin: 0;
   padding: 0;
@@ -74,18 +79,31 @@
 </style>
 <div class="container">
 
-      <div class="card">
+@if (Auth::check() && Auth::id() == $profile->user->id)
+        <div class="card">
+          <div class="card-header">
+            Profile
+            <a href="{{ route('profiles.edit', $profile) }}" class="btn btn-primary float-right">Edit Profile</a>
+          </div>  
+          <div class="card-body">
+          <p>Name: {{ $profile->user->name }}</p>
+            <p>Email: {{ $profile->user->email }}</p>
+            <p>Bio: {{ $profile->bio }}</p>
+          </div>
+@else
+<div class="card">
         <div class="card-header">
           Profile
-          <a href="{{ route('profiles.edit', $profile) }}" class="btn btn-primary float-right">Edit Profile</a>
-        </div>
+        </div>  
         <div class="card-body">
-          <p>Name: {{ Auth::user()->name }}</p>
-          <p>Email: {{ Auth::user()->email }}</p>
+          <p>Name: {{ $profile->user->name }}</p>
+          <p>Email: {{ $profile->user->email }}</p>
           <p>Bio: {{ $profile->bio }}</p>
-</div>
+        </div>
+@endif
+
 <div class="card-header">
-<h3>Posts</h3>
+<h3 class="post-h3" >Posts</h3>
 </div>
     <div class="card-body">
 

@@ -91,16 +91,15 @@ a:hover {
   <h1>All Posts</h1>
 
   @foreach ($posts as $post)
-    <div class="card mb-3">
+    <div class="card">
       <div class="card-body">
         <h5 class="card-title">{{ $post->title }}</h5>
         <p class="card-text">Views: {{ $post->view_count }}</p>
         <p class="card-text">Comments: {{ $post->comments->count() }}</p>
-        <a href="/posts/{{ $post->id }}" class="btn btn-primary">View</a>
+        <a href="/posts/{{ $post->id }}" class="view-button">View</a>
       </div>
     </div>
   @endforeach
+  {{$posts->links()}}
 </div>
-
-
 @endsection

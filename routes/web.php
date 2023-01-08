@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/', 'PostController@index')->name('dashboard');
 Route::get('/posts/{post}', 'PostController@show') ->name('posts.show');
+Route::get('/profiles/{profile}', 'ProfileController@show')->name('profiles.show');
 
 
 Route::group(['middleware' => ['auth']], function() {
@@ -38,7 +39,6 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Route::get('/profiles/create', 'ProfileController@create')->name('profiles.create');
     Route::post('/profiles', 'ProfileController@store')->name('profiles.store');
-    Route::get('/profiles/{profile}', 'ProfileController@show')->name('profiles.show');
     Route::get('/profiles/{profile}/edit', 'ProfileController@edit')->name('profiles.edit');
     Route::patch('/profiles/{profile}', 'ProfileController@update')->name('profiles.update');
 

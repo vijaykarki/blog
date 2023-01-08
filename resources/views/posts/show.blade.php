@@ -79,13 +79,13 @@
   background-color: #dc3545;
 }
 .post-body {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   margin-bottom: 20px;
 }
 
 .post-image {
-  max-width: 100%;
+  max-width: 70%;
   height: auto;
   margin-right: 20px;
 }
@@ -128,7 +128,8 @@ textarea {
     <span class="author-tag">By: <a href="/profiles/{{ $post->user->id }}">{{ $post->user->name }}</a></span>    
     <p class="view-count">Views: {{ $post->view_count }}</p>
   </div>
-  @if (Auth::check() && (Auth::user()->hasRole('admin') || Auth::user()->can('edit-posts')))    <div class="post-actions">
+  @if (Auth::check() && (Auth::user()->hasRole('admin') || Auth::user()->can('edit-posts') || Auth::user()->can('delete-posts')))    
+  <div class="post-actions">
         <button class="edit-button">  <a href="/posts/{{ $post->id }}/edit" class="edit-button-a">Edit</a></button>
         <form action="/posts/{{ $post->id }}" method="POST">
           @csrf
@@ -139,7 +140,9 @@ textarea {
     @endif
   </div>
   <div class="post-body">
+  <div class="post-image">
     <img src="/images/{{ $post->image }}" alt="This is post Image" class="post-image">
+</div>
     <p class="post-content">{{ $post->body }}</p>
   </div>
   <hr>

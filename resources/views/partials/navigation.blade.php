@@ -56,7 +56,7 @@
                     <a class="navigation-link" href="{{ route('posts.create') }}">Create Post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="navigation-link" href="{{ route('profiles.show', Auth::user()->profile) }}">Profile</a>
+                    <a class="navigation-link" href="{{ route('profiles.show', Auth::user()->profile) }}">{{ Auth::user()->name}}</a>
                 </li>
                 @if (Auth::user()->role == 'admin')
                 <li class="nav-item"><a class="navigation-link" href="{{ route('users.index') }}">Assign Roles</a></li>
