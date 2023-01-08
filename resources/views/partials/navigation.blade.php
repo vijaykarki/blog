@@ -58,6 +58,10 @@
                 <li class="nav-item">
                     <a class="navigation-link" href="{{ route('profiles.show', Auth::user()->profile) }}">Profile</a>
                 </li>
+                @if (Auth::user()->role == 'admin')
+                <li class="nav-item"><a class="navigation-link" href="{{ route('users.index') }}">Assign Roles</a></li>
+                @endif
+
                 <li class="nav-item">
                     <a class="navigation-link" href="{{ route('logout') }}">Logout</a>
                 </li>

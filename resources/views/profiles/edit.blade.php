@@ -66,10 +66,7 @@ textarea {
     <form method="POST" action="/profiles/{{ $profile->id }}">
         @csrf
         @method('PATCH')
-        <div class="form-group">
-            <label for="location">Location</label>
-            <input type="text" class="form-control" id="location" name="location" value="{{ $profile->location }}"  />
-        </div>
+
         <div class="form-group">
             <label for="bio">Bio</label>
             <textarea class="form-control" id="bio" name="bio" rows="3">{{ $profile->bio }}</textarea>

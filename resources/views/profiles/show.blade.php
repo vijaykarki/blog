@@ -82,7 +82,6 @@
         <div class="card-body">
           <p>Name: {{ Auth::user()->name }}</p>
           <p>Email: {{ Auth::user()->email }}</p>
-          <p>Location: {{ $profile->location }}</p>
           <p>Bio: {{ $profile->bio }}</p>
 </div>
 <div class="card-header">

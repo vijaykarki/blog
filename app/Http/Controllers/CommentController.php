@@ -29,7 +29,13 @@ class CommentController extends Controller
         // $post = Post::find($request->post_id);
         $user = User::find($post->user_id);
         $user->notify(new CommentNotification);
-        return view('posts.show', compact('post'));
+        if ($request->ajax()) {
+            return response()->json([
+                'comment' => $comment,
+            ]);
+        }
+        return redirect("/posts/{$post->id}");
+
     }
 
     public function destroy(Comment $comment)

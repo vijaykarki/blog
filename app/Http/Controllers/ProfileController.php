@@ -18,7 +18,6 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'location' => 'nullable|string',
             'bio' => 'nullable|string',
         ]);
 
@@ -42,7 +41,6 @@ class ProfileController extends Controller
     public function update(Request $request, Profile $profile)
     {
         $request->validate([
-            'location' => 'nullable|string',
             'bio' => 'nullable|string',
         ]);
 

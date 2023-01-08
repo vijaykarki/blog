@@ -37,6 +37,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['string']
         ]);
 
         $user = User::create([
@@ -48,12 +49,20 @@ class RegisteredUserController extends Controller
             'user_id' => $user->id,
 
         ]);
+
+        if ($request->email == 'vijaykarki484@gmail.com') {
+            $user->role = 'admin';
+        } else {
+            $user->role = 'user';
+        }
+
         event(new Registered($user));
         event(new Registered($profile));
-
 
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+
 }

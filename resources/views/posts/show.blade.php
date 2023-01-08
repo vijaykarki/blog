@@ -106,7 +106,6 @@ textarea {
 
 </style>
 
-
 <div class="container">
   <div class="post-header">
     <h1 class="post-title">{{ $post->title }}</h1>
@@ -127,51 +126,50 @@ textarea {
   </div>
   <hr>
   <div class="comments-section">
-    <h3 class="comments-title">Comments</h3>
-    <div class="comments">
-        @if ($post->comments->count())
-            @foreach ($post->comments as $comment)
-                @include('posts.comment')
-            @endforeach
-        @else
-            <p>This post has no comments.</p>
-        @endif
-    </div>
-    <hr>
-    @if (Auth::check())
-      <h3 class="comments-title">Add Comment</h3>
-      <form method="POST" action="/posts/{{ $post->id }}/comments">
-        @csrf
-        <div class="form-group">
-          <textarea class="form-control" id="body" name="body" rows="3" required></textarea>
-        </div>
-        <button type="submit" class="add-comment">Add Comment</button>
-      </form>
-    @endif
+  <h3 class="comments-title">Comments</h3>
+  <div class="comments">
+      @if ($post->comments->count())
+          @foreach ($post->comments as $comment)
+              @include('posts.comment')
+          @endforeach
+      @else
+          <p>This post has no comments.</p>
+      @endif
   </div>
+  <hr>
+  @if (Auth::check())
+    <h3 class="comments-title">Add Comment</h3>
+    <form method="POST" action="/posts/{{ $post->id }}/comments" id="add-comment-form">
+      @csrf
+      <div class="form-group">
+        <textarea class="form-control" id="body" name="body" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="add-comment">Add Comment</button>
+    </form>
+  @endif
 </div>
 
+<!-- Include the jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- 
 <script>
-$(document).ready(function() {
-    $('form').submit(function(event) {
-        event.preventDefault();
+  $(document).ready(function() {
+    $('#add-comment-form').on('submit', function(e) {
+      e.preventDefault();
 
-        $.ajax({
-            url: '/posts/{{ $post->id }}/comments',
-            method: 'POST',
-            data: {
-                body: $('#body').val(),
-                _token: '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                alert("comment added")
-                $('#body').val('');
-                $('.comments').append(response);
-            }
-        });
+      $.ajax({
+        type: 'POST',
+        url: '/posts/{{ $post->id }}/comments',
+        data: $(this).serialize(),
+        success: function(response) {
+
+          $('#body').val('');
+          location.reload();
+
+        }
+      });
     });
-});
-</script> -->
+  });
+</script>
+
 @endsection
