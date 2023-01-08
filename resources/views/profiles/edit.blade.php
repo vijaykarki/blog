@@ -1,56 +1,81 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Edit Profile</div>
+<style>
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('profiles.update', $profile) }}">
-                            @csrf
-                            @method('PATCH')
+h1 {
+  margin: 20px 0;
+  font-size: 36px;
+  font-weight: 600;
+  color: #333;
+}
 
-                            <div class="form-group row">
-                                <label for="location" class="col-md-4 col-form-label text-md-right">Location</label>
+form {
+  max-width: 500px;
+  margin: 0 auto;
+}
 
-                                <div class="col-md-6">
-                                    <input id="location" type="text" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location', $profile->location) }}" autofocus>
+label {
+  display: block;
+  font-size: 26px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 5px;
+}
 
-                                    @error('location')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+input,
+textarea {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
 
-                            <div class="form-group row">
-                                <label for="bio" class="col-md-4 col-form-label text-md-right">Bio</label>
+textarea {
+  height: 200px;
+}
+.form-group{
+    padding: 10px;
+}
+.create-button {
+  display: block;
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-                                <div class="col-md-6">
-                                    <textarea id="bio" class="form-control @error('bio') is-invalid @enderror" name="bio" rows="3">{{ old('bio', $profile->bio) }}</textarea>
+.create-button:hover {
+  background-color: #0069d9;
+}
 
-                                    @error('bio')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Update Profile
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+</style>
+<div class="container">
+    <h1>Edit Profile</h1>
+    <form method="POST" action="/profiles/{{ $profile->id }}">
+        @csrf
+        @method('PATCH')
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" value="{{ $profile->location }}"  />
         </div>
-    </div>
+        <div class="form-group">
+            <label for="bio">Bio</label>
+            <textarea class="form-control" id="bio" name="bio" rows="3">{{ $profile->bio }}</textarea>
+        </div>
+
+        <div class="form-group">
+    <button type="submit" class="create-button">Update Profile</button>
+</div>
 @endsection

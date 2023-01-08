@@ -31,11 +31,12 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy');
     Route::post('/posts/{post}/comments', 'CommentController@store')->name('comments.store');
+    Route::delete('comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
 
     
     Route::get('/logout', 'LogoutController@index') ->name('logout');
 
-    Route::get('/profiles/create', 'ProfileController@create')->name('profiles.create');
+    // Route::get('/profiles/create', 'ProfileController@create')->name('profiles.create');
     Route::post('/profiles', 'ProfileController@store')->name('profiles.store');
     Route::get('/profiles/{profile}', 'ProfileController@show')->name('profiles.show');
     Route::get('/profiles/{profile}/edit', 'ProfileController@edit')->name('profiles.edit');

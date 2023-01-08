@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
+use App\Models\Profile;
 class RegisteredUserController extends Controller
 {
     /**
@@ -44,8 +44,13 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        $profile = Profile::create([
+            'user_id' => $user->id,
 
+        ]);
         event(new Registered($user));
+        event(new Registered($profile));
+
 
         Auth::login($user);
 

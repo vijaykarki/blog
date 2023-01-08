@@ -101,6 +101,4 @@ a:hover {
     </div>
   @endforeach
 </div>
-
-
 @endsection

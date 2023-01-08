@@ -1,55 +1,15 @@
-@extends('layouts.layout')
-
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Create Profile</div>
-
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('profiles.store') }}">
-                            @csrf
-
-                            <div class="form-group row">
-                                <label for="location" class="col-md-4 col-form-label text-md-right">Location</label>
-
-                                <div class="col-md-6">
-                                    <input id="location" type="text" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" autofocus>
-
-                                    @error('location')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="bio" class="col-md-4 col-form-label text-md-right">Bio</label>
-
-                                <div class="col-md-6">
-                                    <textarea id="bio" class="form-control @error('bio') is-invalid @enderror" name="bio" rows="3">{{ old('bio') }}</textarea>
-
-                                    @error('bio')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Create Profile
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+<div class="container">
+    <h1>Create Profile</h1>
+    <form method="POST" enctype="multipart/form-data" action="/posts">
+        @csrf
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location">
         </div>
-    </div>
-@endsection
+        <div class="form-group">
+            <label for="bio">Bio</label>
+            <textarea class="form-control" id="bio" name="bio" rows="3" ></textarea>
+        </div>
+        <button type="submit" class="create-button">Create</button>
+    </form>
+</div>
