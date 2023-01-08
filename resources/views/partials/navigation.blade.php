@@ -52,9 +52,12 @@
                 <a class="navigation-link" href="/">Home</a>
             </li>
             @if (Auth::check())
+            @if ((Auth::user()->role == 'admin') || (Auth::user()->role == 'creator'))
                 <li class="nav-item">
                     <a class="navigation-link" href="{{ route('posts.create') }}">Create Post</a>
                 </li>
+                @endif
+
                 <li class="nav-item">
                     <a class="navigation-link" href="{{ route('profiles.show', Auth::user()->profile) }}">{{ Auth::user()->name}}</a>
                 </li>

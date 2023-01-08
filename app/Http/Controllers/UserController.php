@@ -11,7 +11,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('profiles.user', compact('users'));
+        return view('profiles.role', compact('users'));
     }
 
     public function update(Request $request, User $user)

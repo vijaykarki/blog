@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Edit Post')
+@section('title', 'Post')
 
 @section('content')
 
@@ -85,7 +85,7 @@
 }
 
 .post-image {
-  max-width: 70%;
+  max-width: 40%;
   height: auto;
   margin-right: 20px;
 }
