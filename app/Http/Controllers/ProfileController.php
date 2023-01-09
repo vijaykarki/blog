@@ -14,7 +14,6 @@ class ProfileController extends Controller
     {
         return view('profiles.create');
     }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -25,7 +24,6 @@ class ProfileController extends Controller
 
         return redirect()->route('profiles.show', auth()->user());
     }
-
     public function show(Profile $profile, Post $post)
     {
         $posts = $profile->user->posts;
@@ -37,15 +35,12 @@ class ProfileController extends Controller
     {
         return view('profiles.edit', compact('profile'));
     }
-
     public function update(Request $request, Profile $profile)
     {
         $request->validate([
             'bio' => 'nullable|string',
         ]);
-
         $profile->update($request->all());
-
         return redirect()->route('profiles.show', $profile);
     }
 }
